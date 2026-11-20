@@ -1,0 +1,20 @@
+{
+  "note": "تصاویر عکاسی در این نسخه از نشانی‌های عمومی Unsplash و منابع تصویری معرفی‌شده در فایل زیر بارگذاری می‌شوند. فایل‌های SVG همین پوشه، پس‌زمینه‌های محلی و مستقل از اینترنت هستند.",
+  "photos": [
+    {
+      "use": "تصویر اصلی ناوگان",
+      "url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=82",
+      "source": "Unsplash"
+    },
+    {
+      "use": "نمای تعمیرگاه",
+      "url": "https://torkgestor.com/assets/hero-oficina-premium-Bolkg7em.jpg",
+      "source": "Tork Gestor"
+    },
+    {
+      "use": "ناوگان موتورسیکلت و خودرو",
+      "url": "https://bibiloca.com.br/images/cars.jpg",
+      "source": "Bibiloca"
+    }
+  ]
+}
