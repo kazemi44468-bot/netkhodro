@@ -124,8 +124,25 @@ td{line-height:1.8}
 <script>
 const $=s=>document.querySelector(s), fa=n=>Number(n||0).toLocaleString('fa-IR'), money=n=>fa(n)+' تومان', today=new Date().toISOString().slice(0,10);
 function jalaliDate(value){if(!value)return '';const p=String(value).slice(0,10).split('-').map(Number);if(p.length!==3||!p[0]||!p[1]||!p[2])return String(value);const parts=new Intl.DateTimeFormat('en-US-u-ca-persian-nu-latn',{year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(p[0],p[1]-1,p[2]));const get=t=>parts.find(x=>x.type===t)?.value||'';return get('year')+'/'+get('month')+'/'+get('day')}
-function jalaliToISO(value){const raw=String(value||'').trim().replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[.\-]/g,'/');const m=raw.match(/^(\d{3,4})\/(\d{1,2})\/(\d{1,2})$/);if(!m)return '';const jy=+m[1],jm=+m[2],jd=+m[3];if(jm<1||jm>12||jd<1||jd>(jm<=6?31:jm<=11?30:30))return '';const gs=new Date(jy+621,2,20),day=(jm<=6?(jm-1)*31:186+(jm-7)*30)+jd-1,g=new Date(gs.getTime()+day*86400000),out=[g.getFullYear(),String(g.getMonth()+1).padStart(2,'0'),String(g.getDate()).padStart(2,'0')].join('-');return jalaliDate(out)===String(jy).padStart(4,'0')+'/'+String(jm).padStart(2,'0')+'/'+String(jd).padStart(2,'0')?out:''}
-document.addEventListener('submit',e=>{e.target.querySelectorAll('[data-jalali-date]').forEach(input=>{const iso=jalaliToISO(input.value);if(iso)input.value=iso;else if(input.value.trim())input.setCustomValidity('تاریخ شمسی معتبر وارد کنید؛ نمونه: ۱۴۰۵/۰۱/۰۱')})},true);
+function jalaliToISO(value){
+ const raw=String(value||'').trim().replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[.\-]/g,'/');
+ const m=raw.match(/^(\d{3,4})\/(\d{1,2})\/(\d{1,2})$/);if(!m)return '';
+ const jy=+m[1],jm=+m[2],jd=+m[3];if(jm<1||jm>12||jd<1)return '';
+ const targetYear=String(jy).padStart(4,'0')+'/01/01',base=Date.UTC(jy+621,2,19);
+ let yearStart=null,nextYearStart=null;
+ for(let i=0;i<16;i++){const d=new Date(base+i*86400000),iso=[d.getUTCFullYear(),String(d.getUTCMonth()+1).padStart(2,'0'),String(d.getUTCDate()).padStart(2,'0')].join('-');if(jalaliDate(iso)===targetYear){yearStart=base+i*86400000;break}}
+ if(yearStart===null)return '';
+ const nextTarget=String(jy+1).padStart(4,'0')+'/01/01';
+ for(let i=350;i<=380;i++){const d=new Date(yearStart+i*86400000),iso=[d.getUTCFullYear(),String(d.getUTCMonth()+1).padStart(2,'0'),String(d.getUTCDate()).padStart(2,'0')].join('-');if(jalaliDate(iso)===nextTarget){nextYearStart=yearStart+i*86400000;break}}
+ if(nextYearStart===null)return '';
+ const yearLength=(nextYearStart-yearStart)/86400000,monthLength=jm<=6?31:jm<=11?30:(yearLength===366?30:29);
+ if(jd>monthLength)return '';
+ const offset=(jm<=6?(jm-1)*31:186+(jm-7)*30)+jd-1;
+ if(offset>=yearLength)return '';
+ const d=new Date(yearStart+offset*86400000);
+ return [d.getUTCFullYear(),String(d.getUTCMonth()+1).padStart(2,'0'),String(d.getUTCDate()).padStart(2,'0')].join('-');
+}
+document.addEventListener('submit',e=>{let invalid=null;e.target.querySelectorAll('[data-jalali-date]').forEach(input=>{if(!input.value.trim()){if(input.required){invalid=input;input.setCustomValidity('تکمیل تاریخ شمسی الزامی است')}return}const iso=jalaliToISO(input.value);if(iso)input.value=iso;else{input.setCustomValidity('تاریخ شمسی معتبر وارد کنید؛ نمونه: ۱۴۰۵/۰۱/۰۱');invalid=input}});if(invalid){e.preventDefault();invalid.reportValidity()}},true);
 document.addEventListener('input',e=>{if(e.target.matches('[data-jalali-date]'))e.target.setCustomValidity('')});
 $('#today').textContent=new Date().toLocaleDateString('fa-IR',{year:'numeric',month:'long',day:'numeric'});
 const seed={vehicles:[],assignments:[],maintenance:[],expenses:[],usage:[],checklist:[],fuel:[],documents:[],incidents:[],people:[{id:1,type:'اداره',name:'اداره اداری و پشتیبانی',phone:''},{id:2,type:'اداره',name:'اداره عملیات',phone:''},{id:3,type:'اداره',name:'اداره فنی و نگهداری',phone:''},{id:4,type:'اداره',name:'اداره خدمات و پشتیبانی',phone:''},{id:5,type:'شخص',name:'علی رضایی',phone:'۰۹۱۲۱۱۱۱۱۱۱',code:'P-001'},{id:6,type:'شخص',name:'محمد کریمی',phone:'۰۹۱۲۲۲۲۲۲۲۲',code:'P-002'},{id:7,type:'شخص',name:'رضا احمدی',phone:'۰۹۱۲۳۳۳۳۳۳۳',code:'P-003'},{id:8,type:'شخص',name:'مهدی حسینی',phone:'۰۹۱۲۴۴۴۴۴۴۴',code:'P-004'}],gold:[],settings:{life:10,rate:10,manual:1}};
