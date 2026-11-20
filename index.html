@@ -14,7 +14,7 @@ body{background:#f4f7fb;background-image:linear-gradient(rgba(27,66,103,.025) 1p
 .nav button{transition:background .2s,transform .2s}.nav button:hover{transform:translateX(-2px)}
 .top{box-shadow:0 4px 18px #183b5d08}
 .content{padding-top:28px}
-.hero-banner{position:relative;overflow:hidden;min-height:210px;border-radius:18px;margin-bottom:20px;padding:28px 30px;color:white;background:linear-gradient(90deg,rgba(15,43,70,.95),rgba(24,67,103,.82) 52%,rgba(24,67,103,.15)),url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=82') center 54%/cover;box-shadow:0 14px 35px #193c5b20}
+.hero-banner{position:relative;overflow:hidden;min-height:210px;border-radius:18px;margin-bottom:20px;padding:28px 30px;color:white;background:linear-gradient(90deg,rgba(15,43,70,.94),rgba(24,67,103,.78) 52%,rgba(24,67,103,.18)),url('assets/images/fleet-pattern.svg') center/cover,url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=82') center 54%/cover;box-shadow:0 14px 35px #193c5b20}
 .hero-banner:after{content:"";position:absolute;left:-70px;bottom:-140px;width:330px;height:330px;border:1px solid #ffffff28;border-radius:50%;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff06}
 .hero-copy{position:relative;z-index:1;max-width:620px}.hero-copy .eyebrow{font-size:11px;color:#d4e3f0;letter-spacing:.2px}.hero-copy h2{font-size:26px;margin:12px 0 8px}.hero-copy p{color:#e0eaf3;line-height:2;margin:0;font-size:13px}.hero-actions{display:flex;gap:9px;margin-top:18px;flex-wrap:wrap}.hero-actions .btn{background:#fff;color:#1b456a}.hero-actions .btn.light{background:#ffffff1c;color:#fff;border:1px solid #ffffff45}
 .feature-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
@@ -23,7 +23,7 @@ body{background:#f4f7fb;background-image:linear-gradient(rgba(27,66,103,.025) 1p
 .feature-tile b,.feature-tile span{position:relative;z-index:1}.feature-tile b{display:block;color:#274a6a;margin:5px 0}.feature-tile span{font-size:11px;color:#8493a4}
 .stat,.panel{box-shadow:0 5px 20px #173b6208;transition:transform .2s,box-shadow .2s}.stat:hover{transform:translateY(-2px);box-shadow:0 10px 24px #173b6212}
 .panel{border-radius:14px}.stat{border-radius:14px}
-.photo-panel{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;align-items:stretch}.photo-card{min-height:175px;border-radius:12px;background:linear-gradient(90deg,#173b62b8,#173b6233),url('https://torkgestor.com/assets/hero-oficina-premium-Bolkg7em.jpg') center/cover;display:flex;align-items:end;padding:17px;color:#fff}.photo-card b{font-size:15px}.photo-card small{display:block;color:#e5edf5;margin-top:5px}
+.photo-panel{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;align-items:stretch}.visual-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}.visual-card{min-height:145px;border-radius:13px;overflow:hidden;position:relative;background-size:cover;background-position:center;display:flex;align-items:end;padding:15px;color:#fff}.visual-card:before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#102d4de8,transparent 80%)}.visual-card b,.visual-card small{position:relative;z-index:1}.visual-card small{display:block;font-size:10px;color:#e1ebf4;margin-top:4px}.visual-card.workshop{background-image:url('https://torkgestor.com/assets/hero-oficina-premium-Bolkg7em.jpg'),url('assets/images/workshop-pattern.svg')}.visual-card.bikes{background-image:url('https://bibiloca.com.br/images/cars.jpg'),url('assets/images/motorcycle-pattern.svg')}.photo-card{min-height:175px;border-radius:12px;background:linear-gradient(90deg,#173b62b8,#173b6233),url('https://torkgestor.com/assets/hero-oficina-premium-Bolkg7em.jpg') center/cover;display:flex;align-items:end;padding:17px;color:#fff}.photo-card b{font-size:15px}.photo-card small{display:block;color:#e5edf5;margin-top:5px}
 .backtop{position:fixed;left:22px;bottom:25px;width:46px;height:46px;border:0;border-radius:15px;background:#173f65;color:white;box-shadow:0 8px 22px #163b5c35;z-index:8;display:grid;place-items:center;font-size:21px;opacity:0;pointer-events:none;transform:translateY(10px);transition:.25s}.backtop.visible{opacity:1;pointer-events:auto;transform:translateY(0)}.backtop:hover{background:#285c85;transform:translateY(-3px)}
 .mobile-dock{display:none}
 @media(max-width:700px){
@@ -33,7 +33,7 @@ body{background:#f4f7fb;background-image:linear-gradient(rgba(27,66,103,.025) 1p
  .mobile-dock button .ico{font-size:17px;line-height:1.2}.mobile-dock button.active{background:#ffffff1c;color:#fff}
  .hero-banner{min-height:205px;padding:21px 18px;border-radius:15px;background-position:57% center}.hero-copy h2{font-size:21px}.hero-copy p{font-size:11px;max-width:95%}
  .feature-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.feature-tile{padding:11px;min-height:105px}.feature-tile b{font-size:11px}.feature-tile span{font-size:9px}
- .photo-panel{grid-template-columns:1fr}.photo-card{min-height:145px}
+ .photo-panel{grid-template-columns:1fr}.photo-card{min-height:145px}.visual-cards{gap:8px}.visual-card{min-height:125px;padding:11px}.visual-card b{font-size:11px}.visual-card small{font-size:9px}
  .backtop{left:14px;bottom:96px;width:42px;height:42px;border-radius:14px}
 }
 @media(max-width:390px){.hero-banner{padding:18px 14px}.hero-copy h2{font-size:19px}.feature-strip{grid-template-columns:1fr 1fr}.feature-tile:last-child{grid-column:1/-1;min-height:80px}}
@@ -74,7 +74,7 @@ const sampleBikes=[
 ];
 if(!db.vehicles.length&&!localStorage.getItem('netkhodro_sample_loaded')){
  const mk=(a,type,i)=>({id:i+1,code:code(type,i+1),type,brand:a[0],model:a[1],year:a[2],category:a[3],plate:(type==='خودرو'?'ایران ۶۷ | ۴۵۸':'ایران ۲۱ | ۷۶۳')+' '+String(i+11).padStart(2,'0'),chassis:'SAMPLE-CH-'+String(i+1).padStart(5,'0'),engine:'SAMPLE-EN-'+String(i+1).padStart(5,'0'),km:18000+(i*2371)%112000,value:type==='خودرو'?850000000+(i*137000000)%1700000000:85000000+(i*17000000)%330000000,status:i%13===0?'در تعمیر':i%17===0?'خارج از ناوگان':'فعال',entryDate:today,notes:'داده نمونه جهت نمایش امکانات سامانه',sample:true,currentDept:i%3===0?'اداره اداری و پشتیبانی':i%3===1?'اداره عملیات':'اداره فنی و نگهداری',currentPerson:'راننده نمونه '+fa(i+1),factor:1+(i%4)*0.05});
- db.vehicles=[...sampleCars.map((a,i)=>mk(a,'خودرو',i)),...sampleBikes.map((a,i)=>mk(a,'موتورسیکلت',i))];
+ db.vehicles=[...sampleCars.map((a,i)=>mk(a,'خودرو',i)),...sampleBikes.map((a,i)=>mk(a,'موتورسیکلت',i+sampleCars.length))];
  localStorage.setItem('netkhodro_sample_loaded','1');save();
 }
 function save(){localStorage.setItem('netkhodro_db',JSON.stringify(db))}function nextId(a){return a.length?Math.max(...a.map(x=>+x.id||0))+1:1}function code(type,id){return (type==='موتورسیکلت'?'MOT':'CAR')+'-'+String(id).padStart(4,'0')}function vehicleName(v){return (v.brand||'')+' '+(v.model||'')}function toast(t){$('#toast').textContent=t;$('#toast').classList.remove('hidden');setTimeout(()=>$('#toast').classList.add('hidden'),2600)}function fmtDate(d){return d?new Date(d+'T00:00:00').toLocaleDateString('fa-IR'):'—'}
