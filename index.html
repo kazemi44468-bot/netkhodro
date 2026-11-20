@@ -308,7 +308,7 @@ function vehicleDetail(id){
   ...ex.map(a=>({date:a.date,type:'هزینه',title:a.title,detail:(a.category||'')+' · '+money(a.amount),sample:a.sample})),
   ...db.usage.filter(a=>a.vehicleCode===x.code).map(a=>({date:a.date,type:'مأموریت و پیمایش',title:a.mission||'ثبت کارکرد',detail:(a.person||'')+' · '+fa((+a.end||0)-(+a.start||0))+' کیلومتر',sample:a.sample}))
  ].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
- let timelineRows=timeline.map(a=>'<tr><td>'+fmtDate(a.date)+'</td><td>'+a.type+'</td><td>'+a.title+(a.sample?' <span class="tag">نمونه</span>':'')+'</td><td>'+a.detail+'</td></tr>').join('');
+ let timelineRows=timeline.map(a=>'<tr><td>'+fmtDate(a.date)+'</td><td>'+a.type+'</td><td>'+a.title+(a.sample?' <span class="tag">نمونه</span>':'')+'</td><td>'+a.detail+'</td></tr>');
  let img=x.photo||'assets/images/fleet-pattern.svg';
  let checkRows=checks.map(c=>'<tr><td>'+c.title+'</td><td>'+fmtDate(c.lastDate)+'</td><td>'+fmtDate(c.dueDate)+'</td><td>'+(c.dueKm?fa(c.dueKm)+' km':'—')+'</td><td>'+checkBadge(c,x)+'</td><td><button class="btn light" onclick="updateChecklist('+c.id+')">بررسی</button></td></tr>');
  let docRows=docs.map(d=>'<tr><td>'+d.type+'</td><td>'+d.number+'</td><td>'+fmtDate(d.expiryDate)+'</td><td>'+(d.url?'<a href="'+d.url+'" target="_blank" rel="noopener">مشاهده سند</a>':'—')+'</td></tr>');
